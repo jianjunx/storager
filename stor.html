@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<!-- <script src="./stor.js"></script> -->
+<script>
 (function (window) {
     function storage(key, value) {
         if (value) {
@@ -53,7 +66,7 @@
 		date.setTime(date.getTime()+day*24*3600*1000)
         if (value) {
             document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ((day == null) ?
-                "" : ";expires=" + date.toGMTString();
+                "" : ";expires=" + date.toGMTString())
         } else {
             if (decodeURIComponent(getAllCookie()[name]) == undefined) {
                 return decodeURIComponent(getAllCookie()[name])
@@ -85,3 +98,9 @@
         "removeStorage": removeStorage
     }
 })(window);
+
+
+
+stor.cookie('name','jack',1)
+</script>
+</html>
