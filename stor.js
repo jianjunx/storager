@@ -51,7 +51,7 @@
     function set(name, value, day) {
         if (value) {
             document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ((day == null) ?
-                "" : ";expires=" + exdate.toGMTString());
+                "" : ";expires=" + day.toString());
         } else {
             if (decodeURIComponent(getAllCookie()[name]) == undefined) {
                 return decodeURIComponent(getAllCookie()[name])
