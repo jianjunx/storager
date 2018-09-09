@@ -1,6 +1,6 @@
 # 简介
 
-UnitStorage 简化并增强了 localStorage 的 API，支持存储多种数据格式并支持异步存取，支持单元分表存取。
+UnitStorage 简化并增强了 localStorage 的 API，支持存储多种数据格式并支持异步存取，支持单元分表存取。附带Cookies简便方法，使用起来更方便。
 
 # 安装
 
@@ -42,7 +42,7 @@ UnitStorage.Cookies();
 
 ### Cookies
 
-Cookie() Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别为 cookie 名，设置的 cookie 值和过期时间。
+Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别为 cookie 名，设置的 cookie 值和过期时间。
 
 ```javascript
 //使用
