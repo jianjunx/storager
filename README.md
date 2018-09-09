@@ -26,10 +26,10 @@ UnitStorage.set('obj', {
 });
 
 // 取
-UnitStorage.get('name'); //{value:'UnitStorage',create:1238719823123,type:'string'}
-UnitStorage.get('obj'); //{value:{name:'UnitStorage',hello:'world'},create:1238719823123,type:'object'}
+UnitStorage.get('name'); // UnitStorage
+UnitStorage.get('obj'); //{name:'UnitStorage',hello:'world'}
 //取全部
-UnitStorage.get(); // {name:{...},obj:{...}}
+UnitStorage.get(); // {name:'UnitStorage',obj:{name:'UnitStorage',hello:'world'}}
 //删除单个
 UnitStorage.remove('obj');
 // 删除全部

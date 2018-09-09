@@ -1,13 +1,13 @@
-const { format, getKeys, getValues } = require('../lib/uilts');
-const Cookies = require('./cookies');
+import { format, getKeys, getValues } from '../lib/uilts';
+import Cookies from './cookies';
 
-module.exports = function(store) {
+export default function(store) {
     // get 方法
     store.prototype.get = function(key) {
         if (!key) return getValues(this.key);
         const _key = this.key + key;
         try {
-            return JSON.parse(localStorage[_key]);
+            return JSON.parse(localStorage[_key]).value;
         } catch (error) {
             return undefined;
         }
@@ -34,4 +34,4 @@ module.exports = function(store) {
         }
     };
     store.prototype.Cookies = Cookies;
-};
+}

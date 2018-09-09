@@ -17,18 +17,32 @@ function Cookies(name, value, time) {
         }
     } else {
         var obj = {};
-        for (var key in getAllCookie()) {
-            obj[key] = decodeURIComponent(getAllCookie()[key]);
+        for (var key in Cookies.all()) {
+            obj[key] = decodeURIComponent(Cookies.all()[key]);
         }
         return obj;
     }
 }
+//  GetCookie方法，将获取的多个cookie添加在一个对象中，返回给用户
+Cookies.all = function() {
+    var cookies = {};
+    if (document.cookie) {
+        var objs = document.cookie.split('; ');
+        for (var i in objs) {
+            var index = objs[i].indexOf('='),
+                name = objs[i].substr(0, index),
+                value = objs[i].substr(index + 1, objs[i].length);
+            cookies[name] = value;
+        }
+    }
+    return cookies;
+};
 //          清除Cookie  一个参数删除，没有参数默认清除所有Cookie
-Cookies.remove = function removeCookie(name) {
-    if (getAllCookie()[name]) {
+Cookies.remove = function(name) {
+    if (Cookies.all()[name]) {
         document.cookie = name + '=; max-age=0';
     } else {
-        var cookies = getAllCookie();
+        var cookies = Cookies.all();
         for (var key in cookies) {
             document.cookie = key + '=; max-age=0';
         }
@@ -44,26 +58,12 @@ function set(name, value, day) {
         var _day = day == null ? '' : ';expires=' + date.toGMTString();
         document.cookie = `${_name}=${_vaule}=${_day}`;
     } else {
-        if (decodeURIComponent(getAllCookie()[name]) == undefined) {
-            return decodeURIComponent(getAllCookie()[name]);
+        if (decodeURIComponent(Cookies.all()[name]) == undefined) {
+            return decodeURIComponent(Cookies.all()[name]);
         } else {
             return null;
         }
     }
 }
-//  GetCookie方法，将获取的多个cookie添加在一个对象中，返回给用户
-Cookies.all = function getAllCookie() {
-    var cookies = {};
-    if (document.cookie) {
-        var objs = document.cookie.split('; ');
-        for (var i in objs) {
-            var index = objs[i].indexOf('='),
-                name = objs[i].substr(0, index),
-                value = objs[i].substr(index + 1, objs[i].length);
-            cookies[name] = value;
-        }
-    }
-    return cookies;
-};
 
-module.exports = Cookies;
+export default Cookies;

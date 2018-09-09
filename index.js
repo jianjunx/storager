@@ -1,6 +1,6 @@
-const Storage = require('./src/storage');
-const SyncStorage = require('./src/syncStorage');
-const Cookies = require('./src/cookies');
+import Storage from './src/storage';
+import SyncStorage from './src/syncStorage';
+import Cookies from './src/cookies';
 
 // 主构造函数
 function UnitStorage(key) {
@@ -27,4 +27,4 @@ UnitStorage.prototype.createCookies = function() {
 //
 SyncStorage(UnitStorage);
 
-module.exports = new UnitStorage();
+export default new UnitStorage();

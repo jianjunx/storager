@@ -1,4 +1,4 @@
-const { format, getKeys, getValues } = require('../lib/uilts');
+import { format, getKeys, getValues } from '../lib/uilts';
 
 class SyncStore {
     constructor(key) {
@@ -13,7 +13,7 @@ class SyncStore {
         try {
             const _val = localStorage[_key];
             if (_val) {
-                return Promise.resolve(JSON.parse(_val));
+                return Promise.resolve(JSON.parse(_val).value);
             }
             return Promise.reject(undefined);
         } catch (error) {
@@ -27,7 +27,7 @@ class SyncStore {
 
         const saveObj = format(value);
         try {
-            localStorage[_key] = JSON.stringify(saveObj);
+            localStorage[_key] = saveObj;
             return Promise.resolve(saveObj);
         } catch (error) {
             return Promise.reject(error);
@@ -59,4 +59,4 @@ class SyncStore {
     }
 }
 
-module.exports = SyncStore;
+export default SyncStore;
