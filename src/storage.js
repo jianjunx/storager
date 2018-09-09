@@ -57,6 +57,13 @@ class SyncStore {
             return Promise.reject(error);
         }
     }
+    // 是否存在
+    has(key) {
+        const _key = this.key + key;
+        const _val = localStorage[_key];
+        const hasVal = !!JSON.parse(_val).value;
+        return !!(_val && hasVal);
+    }
 }
 
 export default SyncStore;

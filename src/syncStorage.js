@@ -34,4 +34,11 @@ export default function(store) {
         }
     };
     store.prototype.Cookies = Cookies;
+    // 是否存在
+    store.prototype.has = function(key) {
+        const _key = this.key + key;
+        const _val = localStorage[_key];
+        const hasVal = !!JSON.parse(_val).value;
+        return !!(_val && hasVal);
+    };
 }

@@ -5,7 +5,7 @@ import Cookies from './src/cookies';
 // 主构造函数
 function UnitStorage(key) {
     // 初始化key
-    this.key = key || 'SS_';
+    this.key = key + '__' || 'us_';
 }
 // 清楚所有单元内所有数据
 UnitStorage.prototype.clearAll = function() {

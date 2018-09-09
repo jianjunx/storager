@@ -34,7 +34,8 @@ UnitStorage.get(); // {name:'UnitStorage',obj:{name:'UnitStorage',hello:'world'}
 UnitStorage.remove('obj');
 // 删除全部
 UnitStorage.clear();
-
+// 是否存在
+UnitStorage.has('name') // true
 //Cookies
 UnitStorage.Cookies();
 // 见下面
@@ -63,13 +64,13 @@ Cookies('name') //jefxie
 
 //第三个值是设置cookie的过期时间，单位为天，例如：
 Cookies('name','jefxie',3) //3表示cookie的过期时间为3天
-
+// 返回所有
+Cookies()
 //删除cookie
 
 // 传入一个要删除的cookie名即可，注意：如果不传入任何参数调用该方法，会默认执行清除所有cookie；
 Cookies.remove(key?);
 
-Cookies.all() //返回所有的cookies
 ```
 
 ## 单元实例
@@ -125,6 +126,7 @@ Async.get(key?) //为空返回该单元所有存储
 Async.set(key,value)
 Async.remove(key)
 Async.clear()
+Async.has()
 
 //同步api
 const Sync = UnitStorage.createSyn('sync');
@@ -133,6 +135,7 @@ Sync.set(key,value);
 Sync.remove(key);
 Sync.clear();
 Sync.clearAll(); //删除所有存储的数据
+Sync.has()
 
 // get()的返回格式
  res = {
@@ -147,5 +150,5 @@ Sync.clearAll(); //删除所有存储的数据
 // Cookies上的方法
  Cookies(key,value,time);
  Cookies.remove();
- Cookies.all();
+
 ```
