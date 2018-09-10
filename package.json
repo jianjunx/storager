@@ -1,6 +1,6 @@
 {
     "name": "unit-storage",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "简单方便的localStorage方法，有同步和异步API，支持异步存取，支持单元分表存取。附带Cookies简便方法，使用起来更方便。",
     "main": "index.js",
     "scripts": {

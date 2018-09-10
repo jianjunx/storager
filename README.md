@@ -50,20 +50,20 @@ Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别�
 // Cookies方法在Storage实例原型上可以直接.Cookies使用
 import Storage from 'unit-storage';
 
-Storage.Cookies(key,val,time);
+Storage.Cookies(key, val, time);
 // 或者 使用createCookies函数创建一个方法
 const Cookies = Storage.createCookies();
 // 使用
 Cookies(key,val,time);
 
 //传入两个值时，会设置传入的cookie
-Cookies('name','jefxie');
+Cookies('name', 'jefxie');
 
 //传入一个值时默认读取这个cookie值
 Cookies('name') //jefxie
 
 //第三个值是设置cookie的过期时间，单位为天，例如：
-Cookies('name','jefxie',3) //3表示cookie的过期时间为3天
+Cookies('name', 'jefxie', 3) //3表示cookie的过期时间为3天
 // 返回所有
 Cookies()
 //删除cookie
@@ -121,32 +121,30 @@ import Storage from 'unit-storage';
 
 //异步api
 const Async = Storage.create('async');
-Async.get(key?) //为空返回该单元所有存储
-Async.set(key,value)
-Async.remove(key)
-Async.clear()
-Async.has()
+Async.get(key?); //为空返回该单元所有存储
+Async.set(key, value);
+Async.remove(key);
+Async.clear();
+Async.has();
 
 //同步api
 const Sync = Storage.createSyn('sync');
 Sync.get(key);
-Sync.set(key,value);
+Sync.set(key, value);
 Sync.remove(key);
 Sync.clear();
 Sync.clearAll(); //删除所有存储的数据
-Sync.has()
+Sync.has();
 
 // get()的返回格式
- res = {
-     value:'value' //存储的值,
-     create:12687612367123, //存储的时间戳
-     type:'string' //value 的类型
- }
+const res = {
+    value: 'value', //存储的值,
+};
 
- // 创建一个cookies方法
- const Cookies = Storage.createCookies();
+// 创建一个cookies方法
+const Cookies = Storage.createCookies();
 
 // Cookies上的方法
- Cookies(key,value,time);
- Cookies.remove();
+Cookies(key, value, time);
+Cookies.remove();
 ```

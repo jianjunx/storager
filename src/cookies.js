@@ -64,5 +64,4 @@ function all() {
     return cookies;
 }
 
-
 export default Cookies;
