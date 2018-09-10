@@ -2,7 +2,7 @@ import { format, getKeys, getValues } from '../lib/uilts';
 
 class SyncStore {
     constructor(key) {
-        this.key = typeof key === 'string' ? key + '__' : 'default__';
+        this.key = typeof key === 'string' ? key + ':' : 'DEFAULTl:';
     }
     // get 方法
     get(key) {
