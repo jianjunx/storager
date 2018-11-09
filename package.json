@@ -1,19 +1,31 @@
 {
-    "name": "unit-storage",
-    "version": "1.0.1",
-    "description": "简单方便的localStorage方法，有同步和异步API，支持异步存取，支持单元分表存取。附带Cookies简便方法，使用起来更方便。",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "localStorage",
-        "store",
-        "async storage",
-        "storage",
-        "cookie",
-        "cookies"
-    ],
-    "author": "Jefxie (jefxie@outlook.com)",
-    "license": "MIT"
+  "name": "@js/storager",
+  "version": "1.0.3",
+  "description": "简单方便的localStorage/sessionStorage/Cookies方法，支持scop作用域隔离，存取互不影响。",
+  "main": "dist/storager.cjs.js",
+  "scripts": {
+    "cjs": "rollup --config rollup.config.js --environment TARGET:cjs",
+    "cjs:min": "rollup --config rollup.config.js --environment TARGET:cjs --environment MIN:min",
+    "iife": "rollup --config rollup.config.js --environment TARGET:iife",
+    "iife:min": "rollup --config rollup.config.js --environment TARGET:iife --environment MIN:min",
+    "dev": "rollup -w --config rollup.config.js --environment TARGET:dev",
+    "prod": "npm run cjs && npm run cjs:min && npm run iife && npm run iife:min"
+  },
+  "keywords": [
+    "localStorage",
+    "store",
+    "storage",
+    "cookie",
+    "cookies"
+  ],
+  "author": "Jefxie (jefxie@outlook.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "rollup": "^0.67.0",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  }
 }

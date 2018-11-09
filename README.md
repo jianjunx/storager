@@ -1,13 +1,13 @@
 # 简介
 
-Storage 简化并增强了 localStorage 的 API，支持存储多种数据格式并支持异步存取，支持单元分表存取。附带 Cookies 简便方法，使用起来更方便。
+Storager 简单方便的localStorage/sessionStorage/Cookies方法，支持scop作用域隔离，存取互不影响。。
 
 # 安装
 
 ```bash
-$ npm install unit-storage --save
+$ npm install unit-Storager --save
 # or
-$ yarn add unit-storage
+$ yarn add unit-Storager
 ```
 
 # 使用
@@ -15,29 +15,29 @@ $ yarn add unit-storage
 ### 简单使用
 
 ```javascript
-import Storage from 'unit-storage';
+import Storager from '@js/storager';
 
 // 存入string
-Storage.set('name', 'Storage');
+Storager.set('name', 'Storager');
 //存入一个对象
-Storage.set('obj', {
-    name: 'Storage',
+Storager.set('obj', {
+    name: 'Storager',
     hello: 'world',
 });
 
 // 取
-Storage.get('name'); // Storage
-Storage.get('obj'); //{name:'Storage',hello:'world'}
+Storager.get('name'); // Storager
+Storager.get('obj'); //{name:'Storager',hello:'world'}
 //取全部
-Storage.get(); // {name:'Storage',obj:{name:'Storage',hello:'world'}}
+Storager.get(); // {name:'Storager',obj:{name:'Storager',hello:'world'}}
 //删除单个
-Storage.remove('obj');
+Storager.remove('obj');
 // 删除全部
-Storage.clear();
+Storager.clear();
 // 是否存在
-Storage.has('name'); // true
+Storager.has('name'); // true
 //Cookies
-Storage.Cookies();
+Storager.Cookies();
 // 见下面
 ```
 
@@ -47,12 +47,12 @@ Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别�
 
 ```javascript
 //使用
-// Cookies方法在Storage实例原型上可以直接.Cookies使用
-import Storage from 'unit-storage';
+// Cookies方法在Storager实例原型上可以直接.Cookies使用
+import Storager from 'unit-Storager';
 
-Storage.Cookies(key, val, time);
+Storager.Cookies(key, val, time);
 // 或者 使用createCookies函数创建一个方法
-const Cookies = Storage.createCookies();
+const Cookies = Storager.createCookies();
 // 使用
 Cookies(key,val,time);
 
@@ -79,10 +79,10 @@ Cookies.remove(key?);
 ### 创建一个异步单元存储实例（异步 API）
 
 ```javascript
-const storage = Storage.create('storage');
+const Storager = Storager.create('Storager');
 
 //存
-storage
+Storager
     .set('name', 'us')
     .then(res => {
         console.log(res);
@@ -91,7 +91,7 @@ storage
         // err
     });
 // 取
-storage
+Storager
     .get('name')
     .then(res => {
         console.log(res);
@@ -104,12 +104,12 @@ storage
 ### 创建一个同步单元实例（同步 API）
 
 ```javascript
-const storage = Storage.createSyn('storage');
+const Storager = Storager.createSyn('Storager');
 
 //存
-storage.set('name', 'us');
+Storager.set('name', 'us');
 // 取
-storage.get('name'); //us
+Storager.get('name'); //us
 
 //... 同简单使用
 ```
@@ -117,10 +117,10 @@ storage.get('name'); //us
 ## API
 
 ```javascript
-import Storage from 'unit-storage';
+import Storager from 'unit-Storager';
 
 //异步api
-const Async = Storage.create('async');
+const Async = Storager.create('async');
 Async.get(key?); //为空返回该单元所有存储
 Async.set(key, value);
 Async.remove(key);
@@ -128,7 +128,7 @@ Async.clear();
 Async.has();
 
 //同步api
-const Sync = Storage.createSyn('sync');
+const Sync = Storager.createSyn('sync');
 Sync.get(key);
 Sync.set(key, value);
 Sync.remove(key);
@@ -142,7 +142,7 @@ const res = {
 };
 
 // 创建一个cookies方法
-const Cookies = Storage.createCookies();
+const Cookies = Storager.createCookies();
 
 // Cookies上的方法
 Cookies(key, value, time);
