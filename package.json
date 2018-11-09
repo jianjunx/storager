@@ -1,5 +1,5 @@
 {
-  "name": "@js/storager",
+  "name": "@web/storage",
   "version": "1.0.3",
   "description": "简单方便的localStorage/sessionStorage/Cookies方法，支持scop作用域隔离，存取互不影响。",
   "main": "dist/storager.cjs.js",
@@ -14,9 +14,12 @@
   "keywords": [
     "localStorage",
     "store",
+    "sessionStorage",
+    "storager",
     "storage",
     "cookie",
-    "cookies"
+    "cookies",
+    "webStorage"
   ],
   "author": "Jefxie (jefxie@outlook.com)",
   "license": "MIT",

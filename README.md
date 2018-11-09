@@ -5,9 +5,21 @@ Storager 简单方便的localStorage/sessionStorage/Cookies方法，支持scop�
 # 安装
 
 ```bash
-$ npm install unit-Storager --save
+$ npm install @web/storage --save
 # or
-$ yarn add unit-Storager
+$ yarn add @web/storage
+
+```
+# 浏览器
+下载：[storager.min.js](./dist/storager.min.js)
+
+```javascript
+<script src='storager.min.js'></script>
+<script>
+    storager.set('test', 123);
+    storager.get('test')  //123
+</script>
+
 ```
 
 # 使用
@@ -15,7 +27,14 @@ $ yarn add unit-Storager
 ### 简单使用
 
 ```javascript
-import Storager from '@js/storager';
+import Storager from '@web/storage';
+
+//Storager 默认为localStorage 存储 
+// 我们创建一个sessionStorage实例
+// 第一个参数是 作用域分隔符 第二个参数是类型
+const sessionStorage = Storager.createStorage('scoped', 'sessionStorage')
+
+// sessionStorage 实例的API和localStorage 完全一致
 
 // 存入string
 Storager.set('name', 'Storager');
@@ -25,17 +44,25 @@ Storager.set('obj', {
     hello: 'world',
 });
 
+// 说明：上面存储成功后在浏览器查看会发现 key的前面多了 $: ，为了分隔Storager实例之间存取互不影响 默认会在所有的key前加上$:分隔,Scope 部分说明
+
 // 取
 Storager.get('name'); // Storager
 Storager.get('obj'); //{name:'Storager',hello:'world'}
 //取全部
 Storager.get(); // {name:'Storager',obj:{name:'Storager',hello:'world'}}
 //删除单个
-Storager.remove('obj');
+Storager.del('obj');
 // 删除全部
-Storager.clear();
+Storager.clear(); //只会删除当前作用域下的
+// 跨作用域删除
+Storager.removeAll() //会清空所有的记录
 // 是否存在
 Storager.has('name'); // true
+// 所有的值
+Storager.values() //[...]
+//所有的key
+Storager.keys() //[...]
 //Cookies
 Storager.Cookies();
 // 见下面
@@ -48,7 +75,7 @@ Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别�
 ```javascript
 //使用
 // Cookies方法在Storager实例原型上可以直接.Cookies使用
-import Storager from 'unit-Storager';
+import Storager from '@web/storage';
 
 Storager.Cookies(key, val, time);
 // 或者 使用createCookies函数创建一个方法
@@ -72,74 +99,48 @@ Cookies()
 Cookies.remove(key?);
 ```
 
-## 单元分隔存储
+# Scope 作用域分隔
 
-创建单元存储需要一个实例名，相当于表名，不同单元之间存取互不影响，例如
-
-### 创建一个异步单元存储实例（异步 API）
+为了避免存取数值时互相影响，Storager提供了作用域分隔，在创建实例时可以 Storager.createStorage(secret, type)
 
 ```javascript
 const Storager = Storager.create('Storager');
+/*
+* secret 作用域分隔符
+* type api类型 localStorage/sessionStorage
+*/
 
-//存
-Storager
-    .set('name', 'us')
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => {
-        // err
-    });
-// 取
-Storager
-    .get('name')
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => {
-        // err
-    });
+Storager.createStorage(secret, type)
+
+const LS = Storager.createStorage('ls', 'localStorage');
+
+LS.set('test', 123);
+// 在浏览器开发者工具中查看的是 ls:test  123 作用域是通过 ls: 分隔的
+
+LS.get('test') //123
+
+LS.keys() // ['test'] 取出的时候会自动去除分隔符，可以放心的用
+
 ```
 
-### 创建一个同步单元实例（同步 API）
+
+## API LIST
 
 ```javascript
-const Storager = Storager.createSyn('Storager');
+import Storager from '@web/storage';
 
-//存
-Storager.set('name', 'us');
-// 取
-Storager.get('name'); //us
-
-//... 同简单使用
-```
-
-## API
-
-```javascript
-import Storager from 'unit-Storager';
-
-//异步api
-const Async = Storager.create('async');
-Async.get(key?); //为空返回该单元所有存储
-Async.set(key, value);
-Async.remove(key);
-Async.clear();
-Async.has();
+const LS = Storager.createStorager(secret, type);
 
 //同步api
-const Sync = Storager.createSyn('sync');
-Sync.get(key);
-Sync.set(key, value);
-Sync.remove(key);
-Sync.clear();
-Sync.clearAll(); //删除所有存储的数据
-Sync.has();
+LS.get(key); //取值
+LS.set(key, value); //存值
+LS.del(key); //删除单个
+LS.clear(); // 清除当前作用域下的存储
+LS.removeAll(); //删除所有存储的数据（跨作用域）
+LS.has(key); //判断一个存储是否存在 true/false
+LS.keys(); //返回当前作用域所有的 key
+LS.values(); //返回当前作用域所有的 value
 
-// get()的返回格式
-const res = {
-    value: 'value', //存储的值,
-};
 
 // 创建一个cookies方法
 const Cookies = Storager.createCookies();
