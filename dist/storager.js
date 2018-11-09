@@ -92,15 +92,17 @@ var storager = (function () {
 
   var enjson = function enjson(value) {
     try {
-      return JSON.stringify({
+      var data = JSON.stringify({
         value: value
       });
+      return encodeURIComponent(data);
     } catch (error) {
       return 'Err: JSON stringify Error';
     }
   };
   var dejson = function dejson(value) {
     try {
+      value = decodeURIComponent(value);
       var data = JSON.parse(value);
       return data && data.value;
     } catch (error) {
@@ -247,7 +249,8 @@ var storager = (function () {
       var obj = {};
 
       for (var key in all()) {
-        obj[key] = JSON.parse(decodeURIComponent(all()[key])).value;
+        var data = JSON.parse(decodeURIComponent(all()[key]));
+        obj[key] = data && data.value;
       }
 
       if (name) {
@@ -331,7 +334,7 @@ var storager = (function () {
     _createClass(Main, [{
       key: "createCookies",
       value: function createCookies() {
-        return new Cookies();
+        return Cookies;
       }
     }, {
       key: "createStorage",

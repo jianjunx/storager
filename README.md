@@ -64,7 +64,7 @@ Storager.values() //[...]
 //所有的key
 Storager.keys() //[...]
 //Cookies
-Storager.Cookies();
+Storager.cookies();
 // 见下面
 ```
 
@@ -77,7 +77,7 @@ Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别�
 // Cookies方法在Storager实例原型上可以直接.Cookies使用
 import Storager from 'unit-storage';
 
-Storager.Cookies(key, val, time);
+Storager.cookies(key, val, time);
 // 或者 使用createCookies函数创建一个方法
 const Cookies = Storager.createCookies();
 // 使用

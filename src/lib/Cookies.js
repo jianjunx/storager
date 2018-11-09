@@ -7,7 +7,8 @@ function Cookies(name, value, time) {
   } else {
     var obj = {};
     for (var key in all()) {
-      obj[key] = JSON.parse(decodeURIComponent(all()[key])).value;
+      const data = JSON.parse(decodeURIComponent(all()[key]));
+      obj[key] = data && data.value;
     }
     if (name) {
       return obj[name];

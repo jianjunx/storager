@@ -1,6 +1,7 @@
 export const enjson = value => {
   try {
-    return JSON.stringify({ value });
+    const data = JSON.stringify({ value });
+    return encodeURIComponent(data);
   } catch (error) {
     return 'Err: JSON stringify Error';
   }
@@ -8,6 +9,7 @@ export const enjson = value => {
 
 export const dejson = value => {
   try {
+    value = decodeURIComponent(value);
     const data = JSON.parse(value);
     return data && data.value;
   } catch (error) {

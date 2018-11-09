@@ -7,7 +7,7 @@ class Main extends Storage {
     this.cookies = this.createCookies();
   }
   createCookies() {
-    return new Cookies();
+    return Cookies;
   }
   createStorage(secret, type) {
     return new Storage(secret, type);
