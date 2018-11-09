@@ -5,9 +5,9 @@ Storager 简单方便的localStorage/sessionStorage/Cookies方法，支持scop�
 # 安装
 
 ```bash
-$ npm install @web/storage --save
+$ npm install unit-storage --save
 # or
-$ yarn add @web/storage
+$ yarn add unit-storage
 
 ```
 # 浏览器
@@ -27,7 +27,7 @@ $ yarn add @web/storage
 ### 简单使用
 
 ```javascript
-import Storager from '@web/storage';
+import Storager from 'unit-storage';
 
 //Storager 默认为localStorage 存储 
 // 我们创建一个sessionStorage实例
@@ -75,7 +75,7 @@ Cookies()是一个复用方法接收 3 个参数：name、valual、day //分别�
 ```javascript
 //使用
 // Cookies方法在Storager实例原型上可以直接.Cookies使用
-import Storager from '@web/storage';
+import Storager from 'unit-storage';
 
 Storager.Cookies(key, val, time);
 // 或者 使用createCookies函数创建一个方法
@@ -127,7 +127,7 @@ LS.keys() // ['test'] 取出的时候会自动去除分隔符，可以放心的�
 ## API LIST
 
 ```javascript
-import Storager from '@web/storage';
+import Storager from 'unit-storage';
 
 const LS = Storager.createStorager(secret, type);
 
