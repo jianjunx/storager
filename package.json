@@ -1,15 +1,16 @@
 {
   "name": "unit-storage",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "简单方便的localStorage/sessionStorage/Cookies方法，支持scop作用域隔离，存取互不影响。",
-  "main": "dist/storager.cjs.js",
+  "main": "dist/storager.prod.js",
   "scripts": {
     "cjs": "rollup --config rollup.config.js --environment TARGET:cjs",
     "cjs:min": "rollup --config rollup.config.js --environment TARGET:cjs --environment MIN:min",
     "iife": "rollup --config rollup.config.js --environment TARGET:iife",
     "iife:min": "rollup --config rollup.config.js --environment TARGET:iife --environment MIN:min",
     "dev": "rollup -w --config rollup.config.js --environment TARGET:dev",
-    "prod": "npm run cjs && npm run cjs:min && npm run iife && npm run iife:min"
+    "build": "rollup -w --config rollup.config.js --environment TARGET:prod",
+    "prod": "npm run build && npm run cjs && npm run cjs:min && npm run iife && npm run iife:min"
   },
   "keywords": [
     "localStorage",
