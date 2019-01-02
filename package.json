@@ -1,6 +1,6 @@
 {
   "name": "unit-storage",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "简单方便的localStorage/sessionStorage/Cookies方法，支持scop作用域隔离，存取互不影响。",
   "main": "dist/storager.prod.js",
   "scripts": {
