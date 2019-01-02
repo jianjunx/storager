@@ -112,17 +112,11 @@
       return 'Err: JSON parse Error';
     }
   };
-  var storage2map = function storage2map(storage) {
-    var storageMap = new Map();
-
-    for (var key in storage) {
-      storageMap.set(key, storage[key]);
-    }
-
-    return storageMap;
+  var toMap = function toMap(storage) {
+    return new Map(Object.entries(storage));
   };
   var getKeys = function getKeys(storage, secret) {
-    var storageMap = storage2map(storage);
+    var storageMap = toMap(storage);
     return _toConsumableArray(storageMap.keys()).filter(function (key) {
       return key.startsWith(secret);
     });

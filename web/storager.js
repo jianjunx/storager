@@ -92,32 +92,28 @@ var storager = (function () {
 
   var enjson = function enjson(value) {
     try {
-      return JSON.stringify({
+      var data = JSON.stringify({
         value: value
       });
+      return encodeURIComponent(data);
     } catch (error) {
       return 'Err: JSON stringify Error';
     }
   };
   var dejson = function dejson(value) {
     try {
+      value = decodeURIComponent(value);
       var data = JSON.parse(value);
       return data && data.value;
     } catch (error) {
       return 'Err: JSON parse Error';
     }
   };
-  var storage2map = function storage2map(storage) {
-    var storageMap = new Map();
-
-    for (var key in storage) {
-      storageMap.set(key, storage[key]);
-    }
-
-    return storageMap;
+  var toMap = function toMap(storage) {
+    return new Map(Object.entries(storage));
   };
   var getKeys = function getKeys(storage, secret) {
-    var storageMap = storage2map(storage);
+    var storageMap = toMap(storage);
     return _toConsumableArray(storageMap.keys()).filter(function (key) {
       return key.startsWith(secret);
     });
@@ -247,7 +243,8 @@ var storager = (function () {
       var obj = {};
 
       for (var key in all()) {
-        obj[key] = JSON.parse(decodeURIComponent(all()[key])).value;
+        var data = JSON.parse(decodeURIComponent(all()[key]));
+        obj[key] = data && data.value;
       }
 
       if (name) {
@@ -331,7 +328,7 @@ var storager = (function () {
     _createClass(Main, [{
       key: "createCookies",
       value: function createCookies() {
-        return new Cookies();
+        return Cookies;
       }
     }, {
       key: "createStorage",

@@ -9,7 +9,7 @@
     "iife": "rollup --config rollup.config.js --environment TARGET:iife",
     "iife:min": "rollup --config rollup.config.js --environment TARGET:iife --environment MIN:min",
     "dev": "rollup -w --config rollup.config.js --environment TARGET:dev",
-    "build": "rollup -w --config rollup.config.js --environment TARGET:prod",
+    "build": "rollup --config rollup.config.js --environment TARGET:prod",
     "prod": "npm run build && npm run cjs && npm run cjs:min && npm run iife && npm run iife:min"
   },
   "keywords": [

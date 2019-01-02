@@ -17,16 +17,10 @@ export const dejson = value => {
   }
 };
 
-export const storage2map = storage => {
-  const storageMap = new Map();
-  for (const key in storage) {
-    storageMap.set(key, storage[key]);
-  }
-  return storageMap;
-};
+export const toMap = storage => new Map(Object.entries(storage));
 
 export const getKeys = (storage, secret) => {
-  const storageMap = storage2map(storage);
+  const storageMap = toMap(storage);
   return [...storageMap.keys()].filter(key => key.startsWith(secret));
 };
 
